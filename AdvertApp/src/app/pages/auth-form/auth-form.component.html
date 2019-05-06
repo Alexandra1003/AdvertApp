@@ -1,0 +1,35 @@
+<form class="form-inline" *ngIf="!currentUser" [formGroup]="authForm" (ngSubmit)="onSubmit($event)">
+  <div>
+    <input [ngClass]='{
+        "is-valid": username.valid && (username.dirty || username.touched),
+        "is-invalid": username.invalid && (username.dirty || username.touched)
+      }'
+      formControlName="username" class="form-control mr-sm-2" type="text" placeholder="User Name">
+    <div class="invalid-tooltip">
+      Please choose a username.
+    </div>
+  </div>
+  <div>
+    <input [ngClass]='{
+      "is-valid": password.valid && (password.dirty || password.touched),
+      "is-invalid": password.invalid && (password.dirty || password.touched)
+    }'
+      formControlName="password" class="form-control mr-sm-2" type="text" placeholder="Password">
+    <div class="invalid-tooltip">
+      Please choose a password.
+    </div>
+  </div>
+  <button [disabled]="authForm.invalid" class="btn btn-success" type="submit">Log in</button>
+  <div [ngClass]='{"invalid-tooltip-custom": currentUser === null,
+                  "valid-tooltip-custom": currentUser !== null}'>
+      Incorrect password or username.
+    </div>
+</form>
+
+
+<div class="user-info-container" *ngIf="currentUser">
+  <h6>
+    {{currentUser.username}}
+  </h6>
+  <button class="btn btn-success" (click)="onLogOut()">Log out</button>
+</div>
