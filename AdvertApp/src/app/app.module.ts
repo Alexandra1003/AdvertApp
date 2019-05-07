@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { AuthFormComponent } from './pages/auth-form/auth-form.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdsDeckComponent } from './pages/ads-deck/ads-deck.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthFormComponent
+    AuthFormComponent,
+    AdsDeckComponent
   ],
   imports: [
     BrowserModule,

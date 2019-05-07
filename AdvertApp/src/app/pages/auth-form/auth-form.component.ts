@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { IUser } from 'src/app/shared/interfaces/user.i';
 import { UserService } from 'src/app/shared/services/user.service';
+import { IUserResponse } from 'src/app/shared/interfaces/userResponce.i';
 
 @Component({
   selector: 'app-auth-form',
@@ -14,7 +14,8 @@ export class AuthFormComponent implements OnInit {
   authForm: FormGroup;
   username: FormControl;
   password: FormControl;
-  currentUser: IUser;
+  currentUser: IUserResponse;
+  isWrongPassword: boolean;
 
   constructor(private userService: UserService) { }
 
@@ -37,12 +38,17 @@ export class AuthFormComponent implements OnInit {
 
   onSubmit(event) {
     event.preventDefault();
-    const userData = {username: this.username.value, password: this.password.value};
-    this.currentUser = this.userService.login(userData);
+    const userData = { username: this.username.value, password: this.password.value };
+    const userResponse = this.userService.login(userData);
+    if (userResponse.isCorrectPassword) {
+      this.currentUser = userResponse;
+    }
+    this.isWrongPassword = !userResponse.isCorrectPassword;
   }
 
   onLogOut() {
     this.currentUser = null;
+    this.isWrongPassword = false;
   }
 
 }

@@ -1,7 +1,8 @@
 import { IUser } from './user.i';
+import { IUserResponse } from './userResponce.i';
 
 export interface IUserService {
-  login(IUser): IUser;
+  login(IUser): IUserResponse;
   logout(): any;
   getCurrentUser(): IUser;
 }

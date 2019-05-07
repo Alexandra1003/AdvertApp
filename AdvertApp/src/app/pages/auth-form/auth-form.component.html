@@ -5,7 +5,7 @@
         "is-invalid": username.invalid && (username.dirty || username.touched)
       }'
       formControlName="username" class="form-control mr-sm-2" type="text" placeholder="User Name">
-    <div class="invalid-tooltip">
+    <div class="invalid-tooltip" *ngIf="!isWrongPassword">
       Please choose a username.
     </div>
   </div>
@@ -20,10 +20,9 @@
     </div>
   </div>
   <button [disabled]="authForm.invalid" class="btn btn-success" type="submit">Log in</button>
-  <div [ngClass]='{"invalid-tooltip-custom": currentUser === null,
-                  "valid-tooltip-custom": currentUser !== null}'>
-      Incorrect password or username.
-    </div>
+  <div *ngIf="isWrongPassword" class="invalid-tooltip-custom">
+    Incorrect password or username.
+  </div>
 </form>
 
 
