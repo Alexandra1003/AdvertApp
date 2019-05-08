@@ -8,6 +8,7 @@ import { AuthFormComponent } from './pages/auth-form/auth-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdsDeckComponent } from './pages/ads-deck/ads-deck.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { UserService } from './shared/services/user.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     ReactiveFormsModule,
     NgxPaginationModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

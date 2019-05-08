@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/shared/services/user.service';
 import { IUserResponse } from 'src/app/shared/interfaces/userResponce.i';
 
 @Component({
   selector: 'app-auth-form',
-  providers: [UserService],
   templateUrl: './auth-form.component.html',
   styleUrls: ['./auth-form.component.scss']
 })

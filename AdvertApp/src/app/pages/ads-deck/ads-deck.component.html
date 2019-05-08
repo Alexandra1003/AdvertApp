@@ -5,7 +5,7 @@
   <div class="card-body">
     <h5 class="card-title">{{item.authorName}}</h5>
     <p class="card-text">{{item.description}}</p>
-    <a href="#" class="btn btn-primary">Delete</a>
+    <a href="#" *ngIf="currentUser" class="btn btn-primary" (click)="onDelete()">Delete</a>
   </div>
   <div class="card-footer text-muted">
     {{item.createdAt}}

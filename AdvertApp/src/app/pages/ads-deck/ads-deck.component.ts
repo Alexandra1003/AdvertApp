@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AdsService } from './ads.service';
 import { IAd } from 'src/app/shared/interfaces/ad.i';
 import { mockAds } from 'src/app/shared/mocks/mock.ads';
+import { UserService } from 'src/app/shared/services/user.service';
+import { IUserResponse } from 'src/app/shared/interfaces/userResponce.i';
 
 @Component({
   selector: 'app-ads-deck',
-  providers: [AdsService],
   templateUrl: './ads-deck.component.html',
   styleUrls: ['./ads-deck.component.scss']
 })
@@ -13,11 +14,25 @@ export class AdsDeckComponent implements OnInit {
 
   p: number = 1;
   adsList: IAd[];
-  constructor(private adsService: AdsService) { }
+  currentUser: IUserResponse;
+  constructor(private adsService: AdsService, private userService: UserService) { }
 
   ngOnInit() {
     this.adsService.setTempAds(mockAds);
     this.adsList = this.adsService.getAllAds();
+
+    this.userService.currentUserSubject
+      .subscribe(user => {
+        this.currentUser = user;
+      });
+  }
+
+  onDelete() {
+    this.userService.getCurrentUser();
+  }
+
+  setCurrentUser() {
+    this.currentUser = this.userService.getCurrentUser();
   }
 
 }
