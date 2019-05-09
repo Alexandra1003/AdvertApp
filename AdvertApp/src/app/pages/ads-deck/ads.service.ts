@@ -6,6 +6,8 @@ import { IAd } from 'src/app/shared/interfaces/ad.i';
 })
 export class AdsService {
 
+  currentAdsList: IAd[];
+  newAdsList: IAd[];
   constructor() { }
 
   setTempAds(adsList) {
@@ -14,6 +16,13 @@ export class AdsService {
 
   getAllAds() {
     console.log(JSON.parse(localStorage.getItem('ads')));
-    return JSON.parse(localStorage.getItem('ads'));
+    this.currentAdsList = JSON.parse(localStorage.getItem('ads'));
+    return this.currentAdsList;
+  }
+
+  deleteAd(adId) {
+    this.currentAdsList = this.currentAdsList.filter(({ id }) => id !== adId);
+    localStorage.setItem('ads', `${JSON.stringify(this.currentAdsList)}`)
+    console.log(this.currentAdsList)
   }
 }

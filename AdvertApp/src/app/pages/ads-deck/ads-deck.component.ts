@@ -27,8 +27,9 @@ export class AdsDeckComponent implements OnInit {
       });
   }
 
-  onDelete() {
-    this.userService.getCurrentUser();
+  onDelete(adId) {
+    this.adsService.deleteAd(adId);
+    this.adsList = this.adsService.getAllAds();
   }
 
   setCurrentUser() {
