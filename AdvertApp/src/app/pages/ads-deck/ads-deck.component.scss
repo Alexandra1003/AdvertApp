@@ -5,6 +5,9 @@
 
   .card.text-center {
     margin-bottom: 30px;
+    .card-header {
+      cursor: pointer;
+    }
   }
   .pagination-controls-container {
     display: flex;

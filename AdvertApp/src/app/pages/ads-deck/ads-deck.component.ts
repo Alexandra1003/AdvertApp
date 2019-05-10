@@ -16,7 +16,7 @@ export class AdsDeckComponent implements OnInit {
   p: number = 1;
   adsList: IAd[];
   currentUser: IUserResponse;
-  constructor(private adsService: AdsService, public userService: UserService, private router: Router) { }
+  constructor(public adsService: AdsService, public userService: UserService, private router: Router) { }
 
   ngOnInit() {
     // this.adsService.setTempAds(mockAds);
