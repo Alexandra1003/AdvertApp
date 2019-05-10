@@ -1,0 +1,13 @@
+<div class="card text-center">
+  <div class="card-header">
+    {{ currentAd.title }}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{currentAd.authorName}}</h5>
+    <p class="card-text">{{currentAd.description}}</p>
+    <button routerLink="/" *ngIf="currentAd.authorName === currentUser?.username" (click) = "onDeleteAd()" class="btn btn-primary">Delete</button>
+  </div>
+  <div class="card-footer text-muted">
+    {{currentAd.createdAt | date:'medium'}}
+  </div>
+</div>

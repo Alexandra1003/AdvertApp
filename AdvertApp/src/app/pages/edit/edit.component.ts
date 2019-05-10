@@ -40,13 +40,14 @@ export class EditComponent implements OnInit {
     event.preventDefault();
 
     const newAdData = {
+      id: this.adsService.getNewId(),
       title: this.title.value,
       description: this.description.value,
       authorName: this.currentUser.username,
-      createAd: new Date()
+      createdAt: new Date()
     };
 
     this.adsService.createAd(newAdData);
-    this.router.navigate(['/']);
+    this.router.navigate([`/${newAdData.id}`]);
   }
 }

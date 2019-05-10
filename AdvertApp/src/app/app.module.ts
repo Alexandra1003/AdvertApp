@@ -10,13 +10,15 @@ import { AdsDeckComponent } from './pages/ads-deck/ads-deck.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { UserService } from './shared/services/user.service';
 import { EditComponent } from './pages/edit/edit.component';
+import { AdDetailsComponent } from './pages/ad-details/ad-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthFormComponent,
     AdsDeckComponent,
-    EditComponent
+    EditComponent,
+    AdDetailsComponent
   ],
   imports: [
     BrowserModule,

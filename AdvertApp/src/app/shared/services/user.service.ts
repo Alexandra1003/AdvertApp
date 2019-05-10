@@ -13,16 +13,23 @@ export class UserService implements IUserService {
   constructor() { }
 
   login(user): IUserResponse {
-    this.currentUser = { username: user.username, isCorrectPassword: true };
-    this.currentUserSubject.next(this.currentUser);
-
     if (!localStorage.getItem('users')) {
       localStorage.setItem('users', JSON.stringify([user]));
+      this.currentUser = { username: user.username, isCorrectPassword: true };
+      this.currentUserSubject.next(this.currentUser);
       return this.currentUser;
     }
 
     const usersList = JSON.parse(localStorage.getItem('users'));
     const registeredUser = usersList.find(({ username }) => username === user.username);
+
+    if (registeredUser && registeredUser.password !== user.password) {
+      this.currentUserSubject.next(null);
+      return { username: user.username, isCorrectPassword: false };
+    }
+
+    this.currentUser = { username: user.username, isCorrectPassword: true };
+    this.currentUserSubject.next(this.currentUser);
 
     if (!registeredUser) {
       localStorage.setItem('users', JSON.stringify([...usersList, user]));
@@ -31,13 +38,11 @@ export class UserService implements IUserService {
     if (registeredUser && registeredUser.password === user.password) {
       return this.currentUser;
     }
-    if (registeredUser && registeredUser.password !== user.password) {
-      return { username: user.username, isCorrectPassword: false };
-    }
   }
 
   logout() {
     this.currentUserSubject.next(null);
+    this.currentUser = null;
   }
 
   getCurrentUser(): IUserResponse {

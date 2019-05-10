@@ -23,5 +23,5 @@
     </div>
   </div>
 
-  <button type="submit" class="btn btn-primary">Create</button>
+  <button [disabled]="editForm.invalid" type="submit" class="btn btn-primary">Create</button>
 </form>

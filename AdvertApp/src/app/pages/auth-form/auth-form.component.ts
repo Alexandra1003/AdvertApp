@@ -17,7 +17,7 @@ export class AuthFormComponent implements OnInit {
   currentUser: IUserResponse;
   isWrongPassword: boolean;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(public userService: UserService, private router: Router) { }
 
   ngOnInit() {
     this.createFormControls();
@@ -48,7 +48,6 @@ export class AuthFormComponent implements OnInit {
   }
 
   onLogOut() {
-    this.currentUser = null;
     this.userService.logout();
     this.isWrongPassword = false;
     this.router.navigate(['/']);

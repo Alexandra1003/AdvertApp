@@ -1,6 +1,5 @@
 <div class="container">
-  <button type="button" *ngIf="currentUser" (click) = "onCreateAdClick()" class="btn btn-primary btn-lg">Create Ad</button>
-  <!-- <button type="button" *ngIf="currentUser" routerLink="/edit" class="btn btn-primary btn-lg">Create Ad</button> -->
+  <button type="button" *ngIf="userService.getCurrentUser()" (click) = "onCreateAdClick()" class="btn btn-primary btn-lg">Create Ad</button>
 
   <div class="card text-center" *ngFor="let item of adsList | paginate: { itemsPerPage: 5, currentPage: p }">
     <div class="card-header">
@@ -9,10 +8,10 @@
     <div class="card-body">
       <h5 class="card-title">{{item.authorName}}</h5>
       <p class="card-text">{{item.description}}</p>
-      <a href="#" *ngIf="currentUser?.username === item.authorName" class="btn btn-primary" (click)="onDelete(item.id)">Delete</a>
+      <button routerLink="/" *ngIf="currentUser?.username === item.authorName" class="btn btn-primary" (click)="onDelete(item.id)">Delete</button>
     </div>
     <div class="card-footer text-muted">
-      {{item.createdAt}}
+      {{item.createdAt | date:'medium'}}
     </div>
   </div>
   <div class="pagination-controls-container">

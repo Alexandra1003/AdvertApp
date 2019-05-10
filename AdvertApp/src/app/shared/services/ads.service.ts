@@ -24,8 +24,6 @@ export class AdsService {
   }
 
   createAd(ad) {
-    ad.id = this.getNewId();
-
     if (!localStorage.getItem('ads')) {
       localStorage.setItem('ads', JSON.stringify([ad]));
       return;
