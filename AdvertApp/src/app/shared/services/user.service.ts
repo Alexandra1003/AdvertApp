@@ -36,10 +36,11 @@ export class UserService implements IUserService {
     }
   }
 
-  logout() { }
+  logout() {
+    this.currentUserSubject.next(null);
+  }
 
   getCurrentUser(): IUserResponse {
-    console.log(this.currentUser)
     return this.currentUser;
   }
 }

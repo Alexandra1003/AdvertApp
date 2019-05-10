@@ -1,9 +1,20 @@
-.card.text-center {
-  margin-bottom: 30px;
-}
-.pagination-controls-container {
+.container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+
+  .card.text-center {
+    margin-bottom: 30px;
+  }
+  .pagination-controls-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  button {
+    max-width: 200px;
+    margin: 20px auto;
+  }
 }

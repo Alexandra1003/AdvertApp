@@ -9,12 +9,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AdsDeckComponent } from './pages/ads-deck/ads-deck.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { UserService } from './shared/services/user.service';
+import { EditComponent } from './pages/edit/edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthFormComponent,
-    AdsDeckComponent
+    AdsDeckComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

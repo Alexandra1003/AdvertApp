@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/shared/services/user.service';
 import { IUserResponse } from 'src/app/shared/interfaces/userResponce.i';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth-form',
@@ -16,7 +17,7 @@ export class AuthFormComponent implements OnInit {
   currentUser: IUserResponse;
   isWrongPassword: boolean;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
     this.createFormControls();
@@ -41,13 +42,16 @@ export class AuthFormComponent implements OnInit {
     const userResponse = this.userService.login(userData);
     if (userResponse.isCorrectPassword) {
       this.currentUser = userResponse;
+      this.authForm.reset();
     }
     this.isWrongPassword = !userResponse.isCorrectPassword;
   }
 
   onLogOut() {
     this.currentUser = null;
+    this.userService.logout();
     this.isWrongPassword = false;
+    this.router.navigate(['/']);
   }
 
 }

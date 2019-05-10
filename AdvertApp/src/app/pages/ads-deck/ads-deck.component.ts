@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AdsService } from './ads.service';
+import { AdsService } from '../../shared/services/ads.service';
 import { IAd } from 'src/app/shared/interfaces/ad.i';
 import { mockAds } from 'src/app/shared/mocks/mock.ads';
 import { UserService } from 'src/app/shared/services/user.service';
 import { IUserResponse } from 'src/app/shared/interfaces/userResponce.i';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ads-deck',
@@ -15,10 +16,10 @@ export class AdsDeckComponent implements OnInit {
   p: number = 1;
   adsList: IAd[];
   currentUser: IUserResponse;
-  constructor(private adsService: AdsService, private userService: UserService) { }
+  constructor(private adsService: AdsService, private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    this.adsService.setTempAds(mockAds);
+    // this.adsService.setTempAds(mockAds);
     this.adsList = this.adsService.getAllAds();
 
     this.userService.currentUserSubject
@@ -34,6 +35,10 @@ export class AdsDeckComponent implements OnInit {
 
   setCurrentUser() {
     this.currentUser = this.userService.getCurrentUser();
+  }
+
+  onCreateAdClick() {
+    this.router.navigate(['/edit']);
   }
 
 }

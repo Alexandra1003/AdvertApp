@@ -1,0 +1,27 @@
+<form [formGroup]="editForm" (ngSubmit)="onCreate($event)">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Title</label>
+    <input formControlName="title" [ngClass]='{
+            "is-valid": title.valid && (title.dirty || title.touched),
+            "is-invalid": title.invalid && (title.dirty || title.touched)
+          }'
+      type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter title...">
+    <div class="invalid-feedback">
+      Please choose a title.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Description</label>
+    <textarea formControlName="description" [ngClass]='{
+                "is-valid": description.valid && (description.dirty || description.touched),
+                "is-invalid": description.invalid && (description.dirty || description.touched)
+              }'
+      class="form-control" rows="3" placeholder="Enter description..."></textarea>
+    <div class="invalid-feedback">
+      Please choose a description.
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Create</button>
+</form>
