@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IAd } from 'src/app/shared/interfaces/ad.i';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { IAd } from 'src/app/shared/interfaces/ad.i';
 export class AdsService {
 
   currentAdsList: IAd[];
-  constructor() { }
+  constructor(private router: Router) { }
 
   setTempAds(adsList) {
     localStorage.setItem('ads', `${JSON.stringify(adsList)}`);
@@ -16,6 +17,16 @@ export class AdsService {
   getAllAds() {
     this.currentAdsList = JSON.parse(localStorage.getItem('ads'));
     return this.currentAdsList;
+  }
+
+  getAd(adId) {
+    const adsList = this.getAllAds();
+    const ad = adsList.find( ({ id }) => id == adId);
+
+    if (!ad) {
+      this.router.navigate(['/']);
+    }
+    return ad;
   }
 
   deleteAd(adId) {
