@@ -10,10 +10,6 @@ export class AdsService {
   currentAdsList: IAd[];
   constructor(private router: Router) { }
 
-  setTempAds(adsList) {
-    localStorage.setItem('ads', `${JSON.stringify(adsList)}`);
-  }
-
   getAllAds() {
     this.currentAdsList = JSON.parse(localStorage.getItem('ads'));
     return this.currentAdsList;
@@ -21,7 +17,7 @@ export class AdsService {
 
   getAd(adId) {
     const adsList = this.getAllAds();
-    const ad = adsList.find( ({ id }) => id == adId);
+    const ad = adsList.find(({ id }) => id == adId);
 
     if (!ad) {
       this.router.navigate(['/']);
@@ -35,12 +31,26 @@ export class AdsService {
   }
 
   createAd(ad) {
+    const adObj = Object.assign({}, ad);
+    adObj.id = this.getNewId();
+
     if (!localStorage.getItem('ads')) {
-      localStorage.setItem('ads', JSON.stringify([ad]));
-      return;
+      localStorage.setItem('ads', JSON.stringify([adObj]));
+      return adObj.id;
     }
 
-    localStorage.setItem('ads', JSON.stringify([...this.currentAdsList, ad]));
+    localStorage.setItem('ads', JSON.stringify([...this.currentAdsList, adObj]));
+
+    return adObj.id;
+  }
+
+  updateAd(updatedAd) {
+    const adsList = this.getAllAds();
+    const targetAd = adsList.find(({ id }) => id == updatedAd.id);
+    const targetAdIndex = adsList.indexOf(targetAd);
+
+    adsList[targetAdIndex] = updatedAd;
+    localStorage.setItem('ads', JSON.stringify(adsList));
   }
 
   getNewId() {

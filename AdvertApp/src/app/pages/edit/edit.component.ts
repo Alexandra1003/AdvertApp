@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AdsService } from 'src/app/shared/services/ads.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/shared/services/user.service';
 import { IUserResponse } from 'src/app/shared/interfaces/userResponce.i';
 
@@ -16,12 +16,22 @@ export class EditComponent implements OnInit {
   title: FormControl;
   description: FormControl;
   currentUser: IUserResponse;
-  constructor(private adsService: AdsService, private router: Router, private userService: UserService) { }
+  editMode = false;
+
+  constructor(private adsService: AdsService, private router: Router,
+    private userService: UserService, public route: ActivatedRoute) { }
 
   ngOnInit() {
     this.createFormControls();
     this.createForm();
     this.currentUser = this.userService.getCurrentUser();
+
+    if (this.route.snapshot.params.id) {
+      this.editMode = true;
+      const currentAdData = this.adsService.getAd(this.route.snapshot.params.id);
+      this.title.setValue(currentAdData.title);
+      this.description.setValue(currentAdData.description);
+    }
   }
 
   createFormControls() {
@@ -40,14 +50,19 @@ export class EditComponent implements OnInit {
     event.preventDefault();
 
     const newAdData = {
-      id: this.adsService.getNewId(),
+      id: null,
       title: this.title.value,
       description: this.description.value,
       authorName: this.currentUser.username,
       createdAt: new Date()
     };
 
-    this.adsService.createAd(newAdData);
-    this.router.navigate([`/${newAdData.id}`]);
+    if (this.editMode) {
+      newAdData.id = this.route.snapshot.params.id;
+      this.adsService.updateAd(newAdData);
+      this.router.navigate([`/${newAdData.id}`]);
+    } else {
+      this.router.navigate([`/${this.adsService.createAd(newAdData)}`]);
+    }
   }
 }

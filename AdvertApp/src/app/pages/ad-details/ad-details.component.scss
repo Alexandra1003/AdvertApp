@@ -1,0 +1,19 @@
+button {
+  background-color: #7e6c76;
+  border-color: #362e32;
+}
+
+.edit-button {
+  margin-right: 20px;
+}
+
+.card-body {
+  background-color: #f1f1f1;
+}
+
+.card-footer, .card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #adb8c4;
+}

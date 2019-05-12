@@ -3,21 +3,56 @@
   flex-direction: column;
   justify-content: space-between;
 
+  button {
+    background-color: #7e6c76;
+    border-color: #362e32;
+  }
+
   .card.text-center {
     margin-bottom: 30px;
     .card-header {
       cursor: pointer;
+      background-color: #adb8c4;
+    }
+    .card-body {
+      background-color: #f1f1f1;
+    }
+    .edit-button {
+      margin-right: 20px;
     }
   }
+
+  .card-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #adb8c4;
+  }
+
   .pagination-controls-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    /deep/ .ngx-pagination {
+      padding-inline-start: 0;
+    }
+    /deep/ .ngx-pagination .current {
+      background: #6D7993;
+    }
   }
 
   button {
     max-width: 200px;
     margin: 20px auto;
+  }
+
+  .alert {
+    color: #4a4a4a;
+    background-color: #D5D5D5;
+    border-color: #949494;
+    hr {
+      border-top-color: #b5b5b5;
+    }
   }
 }

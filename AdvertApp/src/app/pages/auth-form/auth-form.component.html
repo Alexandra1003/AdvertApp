@@ -19,7 +19,7 @@
       Please choose a password.
     </div>
   </div>
-  <button [disabled]="authForm.invalid" class="btn btn-success" type="submit">Log in</button>
+  <button [disabled]="authForm.invalid" class="btn btn-secondary" type="submit">Log in</button>
   <div *ngIf="isWrongPassword" class="invalid-tooltip-custom">
     Incorrect password or username.
   </div>
@@ -30,5 +30,5 @@
   <h6>
     {{currentUser.username}}
   </h6>
-  <button class="btn btn-success" (click)="onLogOut()">Log out</button>
+  <button class="btn btn-secondary" (click)="onLogOut()">Log out</button>
 </div>

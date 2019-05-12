@@ -2,12 +2,20 @@
   <div class="card-header">
     {{ currentAd?.title }}
   </div>
+
   <div class="card-body">
-    <h5 class="card-title">{{currentAd?.authorName}}</h5>
     <p class="card-text">{{currentAd?.description}}</p>
-    <button routerLink="/" *ngIf="currentAd?.authorName === currentUser?.username" (click) = "onDeleteAd()" class="btn btn-primary">Delete</button>
+
+    <button routerLink= "/edit/{{ currentAd?.id }}"
+        *ngIf="userService.getCurrentUser()?.username === currentAd?.authorName"
+        class="btn btn-secondary edit-button">Edit</button>
+
+    <button routerLink="/"
+      *ngIf="currentAd?.authorName === userService.getCurrentUser()?.username"
+      (click) = "onDelete()" class="btn btn-secondary">Delete</button>
   </div>
   <div class="card-footer text-muted">
-    {{currentAd?.createdAt | date:'medium'}}
+    <span>Created by: {{currentAd?.authorName}}</span>
+    <span>Created at: {{currentAd?.createdAt | date:'medium'}}</span>
   </div>
 </div>

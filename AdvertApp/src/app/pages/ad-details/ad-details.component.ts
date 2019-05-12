@@ -14,15 +14,15 @@ export class AdDetailsComponent implements OnInit {
 
   currentAd: IAd;
   currentUser: IUserResponse;
-  constructor(private adsService: AdsService, private route: ActivatedRoute,
-    private userService: UserService) { }
+  constructor(public adsService: AdsService, public route: ActivatedRoute,
+    public userService: UserService) { }
 
   ngOnInit() {
     this.currentAd = this.adsService.getAd(this.route.snapshot.params.id);
     this.currentUser = this.userService.getCurrentUser();
   }
 
-  onDeleteAd() {
+  onDelete() {
     this.adsService.deleteAd(this.currentAd.id);
   }
 }

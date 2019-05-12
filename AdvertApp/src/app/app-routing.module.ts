@@ -7,6 +7,7 @@ import { AdDetailsComponent } from './pages/ad-details/ad-details.component';
 const routes: Routes = [
   { path: '', component: AdsDeckComponent },
   { path: 'edit', component: EditComponent },
+  { path: 'edit/:id', component: EditComponent },
   { path: ':id', component: AdDetailsComponent }
 ];
 
