@@ -38,11 +38,13 @@ export class EditComponent implements OnInit {
   createFormControls() {
     this.title = new FormControl('', [
       Validators.required,
-      forbiddenSymbolValidator(/\s/)
+      Validators.maxLength(40),
+      forbiddenSymbolValidator(/^\s+$/)
     ]);
     this.description = new FormControl('', [
       Validators.required,
-      forbiddenSymbolValidator(/\s/)
+      Validators.maxLength(400),
+      forbiddenSymbolValidator(/^\s+$/)
     ]);
   }
 

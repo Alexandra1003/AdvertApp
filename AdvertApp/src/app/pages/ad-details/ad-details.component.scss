@@ -7,13 +7,16 @@ button {
   margin-right: 20px;
 }
 
+.card-header, .card-footer {
+  background-color: #adb8c4;
+}
+
 .card-body {
   background-color: #f1f1f1;
 }
 
-.card-footer, .card-header {
+.card-footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: #adb8c4;
 }

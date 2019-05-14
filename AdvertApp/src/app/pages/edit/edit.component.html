@@ -6,11 +6,17 @@
             "is-invalid": title.invalid && (title.dirty || title.touched)
           }'
       type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter title...">
+
     <div class="invalid-feedback" *ngIf="title.errors?.forbiddenSymbol">
-      Spaces are not allowed!
+        Your title must not contain only spaces.
     </div>
+
     <div class="invalid-feedback" *ngIf="title.errors?.required">
       Please choose a title.
+    </div>
+
+    <div class="invalid-feedback" *ngIf="title.errors?.maxlength">
+      Title must not be longer than 40 symbols.
     </div>
   </div>
 
@@ -21,11 +27,17 @@
                 "is-invalid": description.invalid && (description.dirty || description.touched)
               }'
       class="form-control" rows="3" placeholder="Enter description..."></textarea>
+
     <div class="invalid-feedback" *ngIf="description.errors?.forbiddenSymbol">
-      Spaces are not allowed!
+      Your description must not contain only spaces.
     </div>
+
     <div class="invalid-feedback" *ngIf="description.errors?.required">
       Please choose a title.
+    </div>
+
+    <div class="invalid-feedback" *ngIf="description.errors?.maxlength">
+      Description must not be longer than 400 symbols.
     </div>
   </div>
 

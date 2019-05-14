@@ -28,10 +28,12 @@ export class AuthFormComponent implements OnInit {
   createFormControls() {
     this.username = new FormControl('', [
       Validators.required,
+      Validators.maxLength(20),
       forbiddenSymbolValidator(/\s/)
     ]);
     this.password = new FormControl('', [
       Validators.required,
+      Validators.maxLength(20),
       forbiddenSymbolValidator(/\s/)
     ]);
   }

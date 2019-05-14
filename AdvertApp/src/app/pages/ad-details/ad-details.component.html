@@ -4,7 +4,7 @@
   </div>
 
   <div class="card-body">
-    <p class="card-text">{{currentAd?.description}}</p>
+    <p class="card-text line-breaker">{{ currentAd?.description }}</p>
 
     <button routerLink= "/edit/{{ currentAd?.id }}"
         *ngIf="userService.getCurrentUser()?.username === currentAd?.authorName"

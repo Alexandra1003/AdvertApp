@@ -5,12 +5,19 @@
         "is-invalid": username.invalid && (username.dirty || username.touched)
       }'
       formControlName="username" class="form-control mr-sm-2" type="text" placeholder="User Name">
+
     <div class="invalid-tooltip" *ngIf="username.errors?.forbiddenSymbol">
       Spaces are not allowed!
     </div>
+
     <div class="invalid-tooltip" *ngIf="username.errors?.required">
       Please choose a username.
     </div>
+
+    <div class="invalid-tooltip" *ngIf="username.errors?.maxlength">
+      Username must not be longer than 20 symbols.
+    </div>
+
   </div>
   <div>
     <input [ngClass]='{
@@ -18,13 +25,21 @@
       "is-invalid": password.invalid && (password.dirty || password.touched)
     }'
       formControlName="password" class="form-control mr-sm-2" type="password" placeholder="Password">
+
     <div class="invalid-tooltip" *ngIf="password.errors?.forbiddenSymbol">
       Spaces are not allowed!
     </div>
+
     <div class="invalid-tooltip" *ngIf="password.errors?.required">
       Please choose a password.
     </div>
+
+    <div class="invalid-tooltip" *ngIf="password.errors?.maxlength">
+      Password must not be longer than 20 symbols.
+    </div>
+
   </div>
+
   <button [disabled]="authForm.invalid" class="btn btn-secondary" type="submit">Log in</button>
   <div *ngIf="isWrongPassword" class="invalid-tooltip-custom">
     Incorrect password or username.
