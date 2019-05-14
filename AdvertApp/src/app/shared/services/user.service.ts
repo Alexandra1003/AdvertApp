@@ -10,6 +10,7 @@ export class UserService implements IUserService {
 
   currentUser: IUserResponse;
   currentUserSubject: Subject<IUserResponse> = new Subject();
+
   constructor() { }
 
   login(user): IUserResponse {

@@ -11,6 +11,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { UserService } from './shared/services/user.service';
 import { EditComponent } from './pages/edit/edit.component';
 import { AdDetailsComponent } from './pages/ad-details/ad-details.component';
+import { OnlyLoggedInUserGuard } from './shared/guards/onlyLoggedInUser.guard';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { AdDetailsComponent } from './pages/ad-details/ad-details.component';
     ReactiveFormsModule,
     NgxPaginationModule
   ],
-  providers: [UserService],
+  providers: [UserService, OnlyLoggedInUserGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
