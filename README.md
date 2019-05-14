@@ -1,6 +1,11 @@
 # AdvertApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.7.
+## Description
+
+This is an app for advertisements.
+- You may log in, create your own ads and watch other users' ones.
+- Authorized user can delete and edit his own ads.
+- All data is stored in localStorage.
 
 ## Development server
 
