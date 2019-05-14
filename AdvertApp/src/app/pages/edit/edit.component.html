@@ -6,7 +6,10 @@
             "is-invalid": title.invalid && (title.dirty || title.touched)
           }'
       type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter title...">
-    <div class="invalid-feedback">
+    <div class="invalid-feedback" *ngIf="title.errors?.forbiddenSymbol">
+      Spaces are not allowed!
+    </div>
+    <div class="invalid-feedback" *ngIf="title.errors?.required">
       Please choose a title.
     </div>
   </div>
@@ -18,8 +21,11 @@
                 "is-invalid": description.invalid && (description.dirty || description.touched)
               }'
       class="form-control" rows="3" placeholder="Enter description..."></textarea>
-    <div class="invalid-feedback">
-      Please choose a description.
+    <div class="invalid-feedback" *ngIf="description.errors?.forbiddenSymbol">
+      Spaces are not allowed!
+    </div>
+    <div class="invalid-feedback" *ngIf="description.errors?.required">
+      Please choose a title.
     </div>
   </div>
 

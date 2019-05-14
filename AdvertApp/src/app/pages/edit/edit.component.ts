@@ -4,6 +4,7 @@ import { AdsService } from 'src/app/shared/services/ads.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/shared/services/user.service';
 import { IUserResponse } from 'src/app/shared/interfaces/userResponce.i';
+import { forbiddenSymbolValidator } from 'src/app/shared/directives/forbidden-symbol.directive';
 
 @Component({
   selector: 'app-edit',
@@ -35,8 +36,14 @@ export class EditComponent implements OnInit {
   }
 
   createFormControls() {
-    this.title = new FormControl('', Validators.required);
-    this.description = new FormControl('', Validators.required);
+    this.title = new FormControl('', [
+      Validators.required,
+      forbiddenSymbolValidator(/\s/)
+    ]);
+    this.description = new FormControl('', [
+      Validators.required,
+      forbiddenSymbolValidator(/\s/)
+    ]);
   }
 
   createForm() {

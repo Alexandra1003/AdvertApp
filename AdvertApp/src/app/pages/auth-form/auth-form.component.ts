@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/shared/services/user.service';
 import { IUserResponse } from 'src/app/shared/interfaces/userResponce.i';
 import { Router } from '@angular/router';
+import { forbiddenSymbolValidator } from 'src/app/shared/directives/forbidden-symbol.directive';
 
 @Component({
   selector: 'app-auth-form',
@@ -25,8 +26,14 @@ export class AuthFormComponent implements OnInit {
   }
 
   createFormControls() {
-    this.username = new FormControl('', Validators.required);
-    this.password = new FormControl('', Validators.required);
+    this.username = new FormControl('', [
+      Validators.required,
+      forbiddenSymbolValidator(/\s/)
+    ]);
+    this.password = new FormControl('', [
+      Validators.required,
+      forbiddenSymbolValidator(/\s/)
+    ]);
   }
 
   createForm() {
